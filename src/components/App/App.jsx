@@ -3,18 +3,28 @@ import axios  from 'axios'
 import { useState } from 'react'
 import css from '../App/App.module.css'
 import { SearchBar } from '../SearchBar/SearchBar'
+import { ImageGallery} from '../ImageGallery/ImageGallery.jsx'
 
 function App() {
     const key = 'CS-WUSttKITitf62ZZvU2KgNX3krMbctQMPMvCg8PHM';
+    const [elements, setElements] = useState([]);
+
     const searchImages = async query => {
         try {
-            const response = axios.get('https://api.unsplash.com/photos/', {
+            const response =await axios.get('https://api.unsplash.com/photos/', {
                 params: { query: `${query}` },
                 headers: {
                     Authorization: `Client-ID ${key}`
                 }
-            })
-            console.log(response)
+                
+            } )
+            setElements(response.data)
+            console.log(response.data);
+            //маленькі картинки
+            
+            // //великі картинки
+            // console.log('вел', response.data.urls.regular)
+
         } catch(error) {
             
         }
@@ -22,7 +32,8 @@ function App() {
     }
     return (
         <div>
-            <SearchBar onSearch={ searchImages}></SearchBar>
+            <SearchBar onSearch={searchImages}></SearchBar>
+             <ImageGallery onElements={ elements} />
       </div>
   )
 }

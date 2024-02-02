@@ -8,10 +8,11 @@ export const SearchBar = ({ onSearch}) => {
      }
 
     return (
-        <form onSubmit={handleSumbit}>
-            <button type='submit'><FcSearch /></button>
-            <input type="text" name="query" placeholder='Search images and photos' />
-            
-        </form>
+        <header>
+            <form onSubmit={handleSumbit}>
+                <button type='submit'><FcSearch /></button>
+                <input type="text" name="query" placeholder='Search images and photos' autoComplete='off' autoFocus />
+            </form>
+        </header>
     )
 }
