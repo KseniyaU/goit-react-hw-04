@@ -23,7 +23,7 @@ export const SearchBar = ({ onSearch}) => {
      }
 
     return (
-        <header>
+        <header className={ css.containerHeader}>
             <form onSubmit={handleSumbit}>
                 <button type='submit'><FcSearch /></button>
                 <input type="text" name="query" placeholder='Search images and photos' autoComplete='off' autoFocus />

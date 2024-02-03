@@ -19,34 +19,16 @@ function App() {
     const [error, setError] = useState(false);
 
     const searchImages = async newQuery => {
-        setQuery(newQuery)
+        setQuery(`${Date.now()}/${newQuery}`)
         setPage(1);
         setElements([]);
-        setLoading(false);
-        setError(false)
-       
-        // try {
-        //     setLoading(true)
-        //     setElements([]);
-        //     const response =await axios.get('https://api.unsplash.com/photos/', {
-        //         params: { query: `${query}` },
-        //         headers: {
-        //             Authorization: `Client-ID ${key}`
-        //         }
-                
-        //     } )
-        //     setElements(response.data)
-            
-        // } catch(error) {
-        //     setError(true)
-        // } finally {
-        //     setLoading(false)
-        // }
-        // console.log(query);
+      
     }
     const handleLoadMore = () => {
-        setPage(page + 1);
-        console.log(page);
+        if (page <= 1000) {
+            setPage(page + 1);
+            // console.log(page);
+        }
     }
     useEffect(() => {
         if (query === '') {
@@ -55,14 +37,10 @@ function App() {
         async function fetchData() {
             try {
                 setLoading(true)
-                setElements([]);
-                const response =await axios.get('https://api.unsplash.com/photos/', {
-                    params: { query: `${query}`,  page:`${page}` },
-                    headers: {
-                        Authorization: `Client-ID ${key}`
-                    }
-                })
-                setElements(response.data)
+                setError(false)
+                const response = await axios.get(`https://api.unsplash.com/search/photos/?client_id=${key}&query='${query.split('/')[1]}&page=${page}`)
+                console.log(response);
+                setElements(prevElem =>[...prevElem, ...response.data.results])
             
             } catch(error) {
                 setError(true)
@@ -71,7 +49,7 @@ function App() {
             }
         }
         fetchData();
-        console.log('ele',query, 'pag', page);
+        console.log('ele',query.split('/')[1], 'pag', page);
     }, [query, page])
     return (
         <div>

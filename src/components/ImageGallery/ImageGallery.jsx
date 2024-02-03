@@ -6,12 +6,13 @@ export const ImageGallery = ({ onElements }) => {
         onElements.length > 0 &&
                 <ul>
                 {onElements.map(element => {
-                    const urlSmall = element.urls.small 
+                    const urlSmall = element.urls.small
+                    const urlBig = element.urls.regular
                     const alt = element.alt_description
                     console.log(element.urls.small);
                     return(
                         <li key={element.id}>
-                            <ImageCard onCardUrlSmall={urlSmall} onCardAlt={ alt} />
+                            <ImageCard onCardUrlSmall={urlSmall} onCardAlt={alt} onCardUrlBig={ urlBig} />
                         </li>
                     )
                     })}
