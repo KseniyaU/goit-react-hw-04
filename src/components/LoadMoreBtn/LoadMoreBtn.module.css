@@ -1,0 +1,6 @@
+.isButton {
+  background-color: black;
+}
+.nonButton {
+  display: none;
+}

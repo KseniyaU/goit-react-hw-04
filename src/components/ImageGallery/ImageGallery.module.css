@@ -1,0 +1,19 @@
+.listImage {
+  /* display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  text-align: center; */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+.containerImg {
+  /* width: calc((100% - 20px) / 3);
+  height: 400px;
+  overflow: hidden; */
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
